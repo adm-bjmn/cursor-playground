@@ -39,17 +39,25 @@ export default function Home() {
       backgroundColor: "#EC008C",
     },
     divPink: {
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 16,
+      backgroundColor: "#fff",
+    },
+    text: {
       x: mousePosition.x - 75,
       y: mousePosition.y - 70,
       height: 150,
       width: 150,
       backgroundColor: "#fff",
+      mixBlendMode: "difference",
     },
   };
 
   const [cursorVariant, setCursorVariant] = useState("default");
   const divPinkEnter = () => setCursorVariant("divPink");
   const divPinkLeave = () => setCursorVariant("default");
+  const textEnter = () => setCursorVariant("text");
+  const textLeave = () => setCursorVariant("divPink");
   return (
     <main className="flex min-h-screen flex-col">
       <motion.div className="cursor" variants={variants} animate={cursorVariant} />
@@ -57,8 +65,12 @@ export default function Home() {
       <div
         onMouseEnter={divPinkEnter}
         onMouseLeave={divPinkLeave}
-        className="h-96 bg-pink w-full"
-      ></div>
+        className="h-96 bg-pink w-full flex justify-center items-center"
+      >
+        <h1 onMouseEnter={textEnter} onMouseLeave={textLeave} className="text-white w-fit text-4xl">
+          Hello
+        </h1>
+      </div>
     </main>
   );
 }
